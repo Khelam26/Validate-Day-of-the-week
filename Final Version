@@ -1,0 +1,104 @@
+// Displays the day of the week.
+// Day of the week with validation
+// Programmer: Khelan Modi
+// Date Modified: Feb'23, 2019
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	system("title Day of the Week with Validation - no magic numbers of library functions by K. Modi");
+	system("color 3f");
+
+	char dayCode, letterCode;
+
+	//Banner
+	cout
+		<< "\n"
+		<< "\t Find the day of the week using switch case \n"
+		<< "\t    validate input FIRST using while loop   \n"
+		<< "\t                 by K. Modi                 \n\n";
+
+	//Instructions to be followed for this lab
+	cout
+		<< " ***************************************************************************\n"
+		<< " * You should have ONLY ONE input validation loop to check if the day code *\n"
+		<< " * Make sure you that loop test ALL possible UNACCEPTABLE situations       *\n"
+		<< " * If unacceptable input is found                                          *\n"
+		<< " *           change the console color to b1 and                            *\n"
+		<< " *           beep to attract the user's attention                          *\n"
+		<< " * Consider using the conditional operator to customize your feedback      *\n"
+		<< " *           (i.e. digit vs special char) INSIDE that loop.                *\n"
+		<< " * AFTER you validate that input is valid                                  *\n"
+		<< " *           restore the console color and                                 *\n"
+		<< " *           chek if it is NOT capital and convert if needed               *\n"
+		<< " * You are NOT allowed to use                                              *\n"
+		<< " *            the ASCII values of ANY character                            *\n"
+		<< " *            any library functions, like the                              *\n"
+		<< " *            isdigit, isupper, toupper, isalnum, isalpha, etc.            *\n"
+		<< " ***************************************************************************\n\n\n\n";
+
+	// Displaying the Day code for the user on the monitor.
+	cout
+		<< " Day codes are: \n"
+		<< " `M' for Monday \n"
+		<< " `T' for Tuesday \n"
+		<< " `W' for Wednesday\n"
+		<< " `H' for Thursday \n"
+		<< " `F' for Friday \n"
+		<< " `S' for Weekend \n";
+
+	//Asking for user's Input
+	cout << "\n\n";
+	cout << "Please enter the code of the day of the week you want: ";
+	cin >> dayCode;
+	cin.ignore(1000, '\n');
+
+	// Forever loop
+	while (true) {
+
+		//Input validation Loop
+		while (!((dayCode >= 'A'&& dayCode <= 'Z') || (dayCode >= 'a'&& dayCode <= 'z')))
+		{
+			//error message if invalid input is submitted.
+			cout << "\a    You can NOT have " << (dayCode <= '0' || dayCode >= '9' ? "SPECIAL CHARACTERS " : "DIGITS ") << "for days code in this program.\n";
+			system("color b1"); // Changing Color to alert the user.
+
+			//asking the user to insert valid input again.
+			cout << "    Please enter" << (((dayCode >= 'A'&& dayCode <= 'Z') || (dayCode >= 'a'&& dayCode <= 'z')) ? " the code of the day of the week you want: " : " a letter code: ");
+			cin >> dayCode;
+			cin.ignore(2000, '\n');
+			system("color 3f");
+		}
+		if (dayCode >= 'a' && dayCode <= 'z')
+		{
+			dayCode = ('A' + (dayCode - 'a')); // Capitalizing the alphabet
+			cout << "\n  Remember that proper nouns start with capital. \n  You should have typed '" << dayCode << "'\n";
+		}
+
+		cout << "\n   ****\t  Your day is:";
+
+		// to display which day he selected.
+		switch (dayCode)
+		{
+		case 'M': cout << " Monday.\n"; break;
+		case 'T': cout << "Tuesday.\n"; break;
+		case 'W': cout << " Wednesday.\n"; break;
+		case 'H': cout << " Thursday.\n"; break;
+		case 'F': cout << " Friday.\n"; break;
+		case 'S': cout << " Weekend.\n"; break;
+		default: cout << " No such day!\n";
+		}
+
+		cout << "\n";
+
+		//Asking again to continue the forever loop for inserting new variables.
+		cout << "Please enter" << (((dayCode >= 'A'&& dayCode <= 'Z') || (dayCode >= 'a'&& dayCode <= 'z')) ? " the code of the day of the week you want: " :  " a letter code: ");
+		cin >> dayCode;
+		cin.ignore(2000, '\n');
+		system("color 3f");
+	}
+	system("pause");
+	return 0;
+}
